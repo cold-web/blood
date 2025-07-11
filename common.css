@@ -1,0 +1,262 @@
+/* ==== BASE DARK THEME ==== */
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Share+Tech+Mono&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0a0a0a;
+    color: #ccc;
+    font-family: 'Share Tech Mono', monospace;
+    overflow-x: hidden;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="30" viewBox="0 0 24 30"><path fill="%23ff0000" d="M12 30C5.373 30 0 24.627 0 18S5.373 6 12 6s12 5.373 12 12-5.373 12-12 12zm0-22c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10z"/></svg>'), auto;
+}
+
+/* ==== BLOOD RAIN BACKGROUND ==== */
+.blood-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/blood.png');
+    opacity: 0.1;
+    z-index: -1;
+    animation: bloodFlow 20s linear infinite;
+}
+
+@keyframes bloodFlow {
+    0% { background-position: 0 0; }
+    100% { background-position: 1000px 1000px; }
+}
+
+/* ==== TERMINAL-STYLE HEADER ==== */
+.terminal-header {
+    text-align: center;
+    padding: 3rem 0;
+    border-bottom: 1px solid #300;
+}
+
+.command-line {
+    background: #111;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    border-left: 3px solid #a00;
+}
+
+.prompt {
+    color: #a00;
+}
+
+.command {
+    color: #0a0;
+}
+
+.glitch {
+    font-family: 'Major Mono Display', monospace;
+    font-size: 4rem;
+    color: #a00;
+    position: relative;
+    margin: 1rem 0;
+}
+
+.glitch::before {
+    content: attr(data-text);
+    position: absolute;
+    left: -2px;
+    text-shadow: 2px 0 #0f0;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch-anim 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(30px, 9999px, 20px, 0); }
+    20% { clip: rect(10px, 9999px, 80px, 0); }
+    40% { clip: rect(50px, 9999px, 30px, 0); }
+    60% { clip: rect(20px, 9999px, 60px, 0); }
+    80% { clip: rect(40px, 9999px, 70px, 0); }
+    100% { clip: rect(70px, 9999px, 10px, 0); }
+}
+
+.subtitle {
+    color: #666;
+    letter-spacing: 3px;
+    font-size: 1.2rem;
+}
+
+/* ==== BLOODY PROJECT GRID ==== */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.project-card {
+    background: #111;
+    border: 1px solid #300;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(160, 0, 0, 0.5);
+}
+
+.project-image {
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(50%) contrast(120%);
+    transition: all 0.5s;
+}
+
+.project-card:hover .project-image img {
+    filter: grayscale(0%) contrast(100%);
+}
+
+.blood-drips {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        transparent 90%, 
+        rgba(160, 0, 0, 0.3) 100%);
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.project-card:hover .blood-drips {
+    opacity: 1;
+    animation: bloodDrip 1.5s infinite;
+}
+
+@keyframes bloodDrip {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100%; }
+}
+
+.project-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: #a00;
+    color: #000;
+    padding: 0.3rem 1rem;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.project-info {
+    padding: 1.5rem;
+}
+
+.project-info h2 {
+    font-family: 'Major Mono Display', monospace;
+    color: #a00;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.code-tag {
+    color: #666;
+}
+
+.project-desc {
+    color: #999;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.tech-stack {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.tech {
+    background: #300;
+    color: #a00;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+    border-radius: 3px;
+}
+
+.blood-btn {
+    background: #a00;
+    color: #000;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.blood-btn:hover {
+    background: #f00;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.5);
+}
+
+/* ==== BLOOD FOOTER ==== */
+.blood-footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid #300;
+    background: #0a0a0a;
+    position: relative;
+}
+
+.blood-footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, 
+        transparent 0%, 
+        rgba(160, 0, 0, 0.1) 50%, 
+        transparent 100%);
+}
+
+.blink {
+    animation: blink 1s infinite;
+    color: #a00;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 768px) {
+    .project-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    
+    .glitch {
+        font-size: 2.5rem;
+    }
+}
